@@ -2,16 +2,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>9a9d5383-a703-4c2f-8d3d-21216b9fc634</ProjectGuid>
+    <ProjectGuid>975dc9de-e2cc-4942-86fd-6ac6956aabd0</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>Learn.py</StartupFile>
+    <StartupFile>Gesmuse.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
-    <Name>Learn</Name>
-    <RootNamespace>Learn</RootNamespace>
-    <IsWindowsApplication>False</IsWindowsApplication>
+    <Name>Gesmuse</Name>
+    <RootNamespace>Gesmuse</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -22,10 +21,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Learn.py" />
-    <Compile Include="Test.py">
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="Gesmuse.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

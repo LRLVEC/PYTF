@@ -7,6 +7,8 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "TF", "TF\TF.pyproj", "{BCB5
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Learn", "Learn\Learn.pyproj", "{9A9D5383-A703-4C2F-8D3D-21216B9FC634}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Gesmuse", "Gesmuse\Gesmuse.pyproj", "{975DC9DE-E2CC-4942-86FD-6AC6956AABD0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,6 +19,8 @@ Global
 		{BCB59CB4-5F2F-4FC4-8BC9-10378B98ECCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9A9D5383-A703-4C2F-8D3D-21216B9FC634}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9A9D5383-A703-4C2F-8D3D-21216B9FC634}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{975DC9DE-E2CC-4942-86FD-6AC6956AABD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{975DC9DE-E2CC-4942-86FD-6AC6956AABD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
