@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>975dc9de-e2cc-4942-86fd-6ac6956aabd0</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>Gesmuse.py</StartupFile>
+    <StartupFile>Gather.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -26,7 +26,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Final.py" />
+    <Compile Include="Gather.py" />
     <Compile Include="Gesmuse.py" />
+    <Compile Include="GMCV.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

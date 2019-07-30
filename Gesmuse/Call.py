@@ -34,12 +34,12 @@ def init():
 	sess.run(tf.global_variables_initializer())
 	return x9, sess
 def run(x, answer, s):
-	return answer.eval(session = s, feed_dict = {x0:x})
+	return answer.eval(session = s, feed_dict = {x0:np.reshape(x, (1, 256, 256, 1))})
 
-answer, session = init()
-a = np.load("G:/DataSet/TestingSet.npy")
-b=time.time()
-for i in range(32):
-	run(np.reshape(a[i], (1, 256, 256, 1)), answer, session)
-e=time.time()
-print(e-b)
+#answer, session = init()
+#a = np.load("G:/DataSet/TestingSet.npy")
+#b=time.time()
+#for i in range(32):
+#	run(, answer, session)
+#e=time.time()
+#print(e-b)
