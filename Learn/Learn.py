@@ -1,22 +1,14 @@
 import matplotlib.pyplot as plt
 import numpy as np
-import tensorflow as tf
-import cv2
 
-img = cv2.imread("ahh.jpg",cv2.IMREAD_COLOR)
-print(img)
-#method1
-b,g,r = cv2.split(img)
-img2 = cv2.merge([r,g,b])
-plt.imshow(img2)
-plt.show()
-
-#method2
-img3 = img[:,:,::-1]
-plt.imshow(img3)
-plt.show()
-
-#method3
-img4 = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-plt.imshow(img4)
-plt.show()
+acc_test = np.load("TestAccuracy.npy")
+acc_train = np.load("TrainAccuracy.npy")
+plt.figure(figsize=(9, 5))
+plt.plot(range(0, 100000, 500), acc_test, 'r-', label='Test Accuracy')
+plt.plot(range(0, 100000, 500), acc_train, 'b-', label='Train Accuracy')
+plt.xlabel('Number of trainings')
+plt.ylabel('Accuracy')
+plt.legend(loc='lower right', prop={'size': 11})
+plt.title('Deep learning gesture recognition accuracy relationship with number of trainings',fontsize=12,color='black')
+#plt.show()
+plt.savefig('Figure.png', dpi=300)
