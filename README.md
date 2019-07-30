@@ -1,2 +1,2 @@
 # PYTF
-A tensorflow frame based on python
+A tensorflow learning project
