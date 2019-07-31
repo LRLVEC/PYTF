@@ -93,4 +93,4 @@ if __name__ =='__main__':
 	 eye.voi_show(a,s)
 	 #print(eye.img)
 	 #print(run(eye.img,a,s))
-	 del eye`
+	 del eye

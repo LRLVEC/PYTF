@@ -21,7 +21,7 @@ if not os.path.exists("G:/DataSet/TrainingSet.npy"):
 	testingSetAnswer1 = np.empty([testSize, 5], dtype = np.bool)
 	file = open("G:/DataSet/train.txt","r")
 	for i in range(trainSize):
-		trainingSet[i] = cv2.imread("G:/DataSet/train/" + str(i) + ".jpg",cv2.IMREAD_COLOR)[:,:,0] / 256.0
+		trainingSet[i] = cv2.imread("G:/DataSet/train/" + str(i) + ".png",cv2.IMREAD_COLOR)[:,:,0] / 256.0
 		trainingSetAnswer1[i] = [int(x) for x in file.readline().split()]
 	file.close()
 	trainingSet = trainingSet.reshape((trainSize, 256, 256, 1))
@@ -36,10 +36,10 @@ if not os.path.exists("G:/DataSet/TrainingSet.npy"):
 	testingSetAnswer0 = np.array(testingSetAnswer1, dtype = np.float32)
 	testingSetAnswer0 = testingSetAnswer0 * 2.0 - 1.0
 	np.save("G:/DataSet/TrainingSet.npy", trainingSet)
-	np.save("G:/DataSet/TestingSet.npy", testingSet)
 	np.save("G:/DataSet/TrainingAnswer0.npy", trainingSetAnswer0)
-	np.save("G:/DataSet/TestingAnswer0.npy", testingSetAnswer0)
 	np.save("G:/DataSet/TrainingAnswer1.npy", trainingSetAnswer1)
+	np.save("G:/DataSet/TestingSet.npy", testingSet)
+	np.save("G:/DataSet/TestingAnswer0.npy", testingSetAnswer0)
 	np.save("G:/DataSet/TestingAnswer1.npy", testingSetAnswer1)
 else:
 	trainingSet = np.load("G:/DataSet/TrainingSet.npy")
