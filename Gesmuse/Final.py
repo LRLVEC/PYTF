@@ -1,49 +1,75 @@
-import cv2  
+import cv2
 import numpy as np
-import math
+import math 
 import random
-import os
-from matplotlib import pyplot as plt
-def transform(img, x0, x1, y0, y1, c):
-	x = random.uniform(x0, x1)
-	y = random.uniform(y0, y1)
-	scale = 1
-	degree = 0 #random.uniform(-20, 20)
-	M1 = np.array([[1, 0, x], [0, 1, y]])
-	M2 = cv2.getRotationMatrix2D((128, 128), degree, scale)
-	img = cv2.warpAffine(img, M2, (256, 256))
-	img = cv2.warpAffine(img, M1, (256, 256))
-	result = cv2.resize(img, (256, 256))
-	s = "G:/DataSet/train/" + str(c) + ".jpg"
-	cv2.imwrite(s, img)
-	cv2.destroyAllWindows()
-c = 0
-train_answer = open("G:/DataSet/train.txt",'w')
-test_answer = open("G:/DataSet/test.txt",'w')
-for i in range(32):
-	for j in range(5):
-		s = "G:/hands/hand/hand" + str(i) + "_" + str(j) + ".jpg"
-		img = cv2.imread(s)
-		x0, y0, w, h = cv2.boundingRect(img[:,:,0])
-		x0 = -x0
-		y0 = -y0
-		x1 = 256 + x0 - w
-		y1 = 256 + y0 - h
-		for k in range(200):
-			transform(img, x0, x1, y0, y1, c)
-			c = c + 1
-	s = "G:/hands/hand_test/hand" + str(i) + ".jpg"
-	img = cv2.imread(s)
-	s = "G:/DataSet/test/" + str(i) + ".jpg"
-	cv2.imwrite(s, img)
-a = [1,2,4,8,16]
-for i in range(32):
-	for k in range(1000):
-		for j in range(5):
-			train_answer.write(str(int(i & a[j] != 0)) + " ")
-		train_answer.write("\n")
-	for j in range(5):
-		test_answer.write(str(int(i & a[j] != 0)) + " ")
-	test_answer.write("\n")
-train_answer.close()
-test_answer.close()
+
+#for a in range(32):
+#	img=cv2.imread("G:/DataSet/test/"+str(a)+".jpg")
+#	img=img[:,::-1,:]
+#	cv2.imwrite("G:/DataSet/test/"+str(a)+".jpg",img)
+k = 0
+for a in range(32):
+	for b in range(5):
+		for degree in np.random.normal(0, 10, 200):
+			if abs(degree) > 30:degree = np.sign(degree) * 30
+			s = "hands/hand_train/" + str(a) + "_" + str(b) + ".png"
+			degree_ = 20 * math.exp(-0.1 * a)
+			img = cv2.imread(s)
+			cols, rows = img.shape[:2]
+			#degree = random.uniform(-30,30)
+			M = cv2.getRotationMatrix2D((cols / 2,rows / 2),degree + degree_,1)
+			img = cv2.warpAffine(img,M,(2 * cols,2 * rows)) 
+			M1 = np.array([[1,0,cols - 0.5 * cols],[0,1,rows - 0.5 * rows]])
+			img = cv2.warpAffine(img,M1,(2 * cols,2 * rows))
+			ret, thresh = cv2.threshold(cv2.cvtColor(img.copy(), cv2.COLOR_BGR2GRAY), 127, 255, cv2.THRESH_BINARY)
+			contours, hier = cv2.findContours(thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+			for c in contours:
+				rect = cv2.minAreaRect(c)
+				box = cv2.boxPoints(rect)
+			#cv2.drawContours(img, [np.int32(box)], 0, (0, 0, 255), 3)
+			dm = box[3] - box[0]
+			dn = box[1] - box[0]
+			m = math.sqrt(np.sum(dm * dm))
+			n = math.sqrt(np.sum(dn * dn))
+			if m > n:
+				second_lowest = box[1][1]
+				if 0.5 * m >= n:
+					box[0] = (box[3] + box[0]) / 2
+					box[1] = (box[2] + box[1]) / 2
+				else:
+					box[0] = box[3] - dm * (n / m)
+					box[1] = box[2] - dm * (n / m)
+			else:
+				second_lowest = box[3][1]
+				if 0.5 * n >= m:
+					box[0] = (box[1] + box[0]) / 2
+					box[3] = (box[3] + box[2]) / 2
+				else:
+					box[0] = box[1] - dn * (m / n)
+					box[3] = box[2] - dn * (m / n)
+			dd = box[2] - box[0]
+			x1 = int(min(box[0][0],box[1][0],box[2][0],box[3][0])) - 1
+			x2 = max(box[0][0],box[1][0],box[2][0],box[3][0]) + 1
+			y1 = int(min(box[0][1],box[1][1],box[2][1],box[3][1])) - 1
+			y2 = max(box[0][1],box[1][1],box[2][1],box[3][1]) + 1
+			dy = second_lowest - y1
+			r = math.sqrt(np.sum(dd * dd))
+			if dy > r: 
+				r = int(random.uniform(r, dy))
+			else:
+				r = int(r)
+			x3 = int(x2 - r)
+			y3 = int(y2 - r)
+			#cv2.rectangle(img, (x1, y1), (int(x2), int(y2)), (0, 255, 0), 2)
+			xx,yy = int(random.uniform(x3, x1)),int(random.uniform(y3, y1))
+			#cv2.drawContours(img, [np.int32(box)], 0, (0, 0, 255), 3)
+			#cv2.imshow("contours3", img)
+			img = img[yy:yy + r, xx:xx + r]
+			#cv2.imshow("contours", img)
+			img = cv2.resize(img,(256,256))
+			#cv2.imshow("contours2", img)
+			s2 = "G:/DataSet/train/" + str(k) + ".png"
+			k = k + 1
+			cv2.imwrite(s2,img)
+			#cv2.waitKey(1)
+			cv2.destroyAllWindows()
