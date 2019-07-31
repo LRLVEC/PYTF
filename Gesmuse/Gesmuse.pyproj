@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>975dc9de-e2cc-4942-86fd-6ac6956aabd0</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>Gesmuse.py</StartupFile>
+    <StartupFile>GMCV.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
