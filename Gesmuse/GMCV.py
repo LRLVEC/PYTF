@@ -3,7 +3,7 @@
 
 ' GMCV '
 
-__author__ = 'Adam'
+__author__ = 'Adam'  
 
 import numpy as np
 import cv2
@@ -93,4 +93,4 @@ if __name__ =='__main__':
 	 eye.voi_show(a,s)
 	 #print(eye.img)
 	 #print(run(eye.img,a,s))
-	 del eye`
+	 del eye
