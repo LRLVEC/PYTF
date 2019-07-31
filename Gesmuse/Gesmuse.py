@@ -4,6 +4,7 @@ import tensorflow as tf
 import cv2
 import os
 import time
+import RealTime
 
 os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 
@@ -14,6 +15,7 @@ testSize = 32
 
 print("Start to process training data:")
 start = time.time()
+RealTime.init()
 if not os.path.exists("G:/DataSet/TrainingSet.npy"):
 	trainingSet = np.empty([trainSize, 256, 256], dtype = np.float32)
 	testingSet = np.empty([testSize, 256, 256], dtype = np.float32)
@@ -97,7 +99,7 @@ delta = tf.reduce_mean(tf.square(x9 - answer0))
 
 trainStep = tf.compat.v1.train.AdagradOptimizer(2e-3).minimize(delta)
 accuracy = tf.reduce_mean(tf.cast(tf.equal(tf.reduce_sum(tf.cast(tf.equal(answer1, tf.greater(x9, 0)), dtype = tf.int32), axis = -1), 5),dtype = tf.float32))
-batchSize = 16
+batchSize = 32
 
 config = tf.ConfigProto()
 config.gpu_options.allow_growth = True

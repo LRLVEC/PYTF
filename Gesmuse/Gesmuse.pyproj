@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>975dc9de-e2cc-4942-86fd-6ac6956aabd0</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>GMCV.py</StartupFile>
+    <StartupFile>NewLife.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -29,6 +29,12 @@
     <Compile Include="Gather.py" />
     <Compile Include="Gesmuse.py" />
     <Compile Include="GMCV.py" />
+    <Compile Include="NewLife.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="RealTime.py">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
