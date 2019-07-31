@@ -8,7 +8,7 @@ import time
 os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 
 
-trainSize = 32000
+trainSize = 27550
 testSize = 32
 
 
